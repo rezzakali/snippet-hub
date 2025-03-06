@@ -2,7 +2,7 @@ import LandingPageHeader from '@/components/home-header';
 import { Button } from '@/components/ui/button';
 import { SignInButton } from '@clerk/nextjs';
 import { Metadata } from 'next';
-import Image from 'next/image';
+import PreviewImage from './preview-image';
 
 export const metadata: Metadata = {
   title: 'SnippetHub - Your go-to code snippet manager',
@@ -28,13 +28,7 @@ export default async function Home() {
 
       {/* CTA Image Section */}
       <div className="mt-12 w-full max-w-4xl text-center">
-        <Image
-          src="/preview.png"
-          alt="Snippet preview"
-          width={800}
-          height={400}
-          className="rounded-lg shadow-lg mx-auto"
-        />
+        <PreviewImage />
         <p className="mt-6 text-lg font-medium">
           Start organizing your snippets today!
         </p>
