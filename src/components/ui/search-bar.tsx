@@ -16,7 +16,7 @@ const SearchBar = () => {
   const pathname = usePathname();
 
   const handleSearch = useDebouncedCallback((term) => {
-    dispatch(setSearchTerm(term));
+    dispatch(setSearchTerm(term.trim()));
   }, 500);
 
   return (

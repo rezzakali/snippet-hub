@@ -21,8 +21,10 @@ import {
   ArchiveX,
   ArrowLeft,
   Copy,
+  Globe,
   Heart,
   Pencil,
+  Share2,
   TrashIcon,
   X,
 } from 'lucide-react';
@@ -37,6 +39,7 @@ import {
 import { toast } from 'sonner';
 import ConfirmationDialog from './confirmation-dialog';
 import EditSnippetDialog from './edit-snippet-dialog';
+import SnippetShareDialog from './snippet-share-dialog';
 import { Badge } from './ui/badge';
 
 export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
@@ -47,6 +50,8 @@ export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
   const [deleteDialog, setDeleteDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [snippet, setSnippet] = useState<CodeSnippet | null>(null);
+
+  const [shareDialogOpen, setShareDialogOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -176,7 +181,13 @@ export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
                   >
                     {/* Header */}
                     <div className="flex items-center justify-between">
-                      <h2 className="text-sm font-semibold">{snippet.title}</h2>
+                      <div className="flex items-center gap-2">
+                        <Globe className="w-3 h-3" />
+
+                        <h2 className="text-sm font-semibold">
+                          {snippet.title}
+                        </h2>
+                      </div>
                       <button className="transition">
                         <Heart
                           className={`w-3 h-3 text-primary`}
@@ -260,7 +271,7 @@ export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
                         </span>
                       </div>
                       {user?.user?.id === snippet.createdBy && (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 mt-2">
                           {/* Edit Button */}
                           <button
                             className="transition hover:text-primary"
@@ -316,6 +327,15 @@ export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
                         </div>
                       )}
                     </div>
+                    <div className="flex items-center justify-start !mt-4">
+                      <Share2
+                        className="w-4 h-4 cursor-pointer"
+                        onClick={() => {
+                          setSnippet(snippet);
+                          setShareDialogOpen(true);
+                        }}
+                      />
+                    </div>
                   </div>
                 );
               })}
@@ -325,9 +345,15 @@ export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
           {/* Selected Snippet Details */}
           {selectedSnippet && (
             <div className="w-full md:w-1/3 bg-muted/50 rounded p-4 relative h-[85vh]">
-              <h2 className="text-lg font-bold mt-6">
-                {selectedSnippet.title}
-              </h2>
+              <div className="flex">
+                <div className="flex items-center gap-2 my-4">
+                  <Globe className="w-3 h-3" />
+
+                  <h2 className="text-sm font-semibold">
+                    {selectedSnippet.title}
+                  </h2>
+                </div>
+              </div>
 
               {/* Badge */}
               <div className="flex items-center gap-2">
@@ -368,7 +394,7 @@ export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
                 </SyntaxHighlighter>
               </div>
               {/* Language and Delete */}
-              <div className="flex items-center justify-between mt-2">
+              <div className="flex items-center justify-between mt-5">
                 <div className="flex items-center gap-2">
                   <Image
                     src={getLanguageLogoPath(selectedSnippet.language)}
@@ -450,6 +476,17 @@ export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
                   </div>
                 )}
               </div>
+
+              <div className="flex items-center justify-start !mt-4">
+                <Share2
+                  className="w-4 h-4 cursor-pointer"
+                  onClick={() => {
+                    setSnippet(selectedSnippet);
+                    setShareDialogOpen(true);
+                  }}
+                />
+              </div>
+
               <button
                 className="md:hidden flex items-center gap-2 text-sm text-primary absolute top-1 left-2"
                 onClick={() => dispatch(setSelectedSnippet(null))}
@@ -490,6 +527,11 @@ export default function SnippetGrid({ snippets }: { snippets: CodeSnippet[] }) {
       <EditSnippetDialog
         open={editSnippetDialogOpen}
         onOpenChange={setEditDialogOpen}
+      />
+      <SnippetShareDialog
+        open={shareDialogOpen}
+        setOpen={setShareDialogOpen}
+        snippet={snippet!}
       />
     </React.Fragment>
   );

@@ -25,6 +25,8 @@ export default function SnippetCardSkeleton() {
           <Skeleton className="h-4 w-6" />
         </div>
       </div>
+      {/* share */}
+      <Skeleton className="h-4 w-6 mt-2" />
     </div>
   );
 }

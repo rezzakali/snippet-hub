@@ -11,6 +11,7 @@ const SnippetSchema = new mongoose.Schema(
     favouriteBy: [{ type: String, ref: 'User' }],
     isDeleted: { type: Boolean, default: false },
     isArchived: { type: Boolean, default: false },
+    shareId: { type: String, unique: true },
   },
   { timestamps: true }
 );

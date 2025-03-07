@@ -9,6 +9,7 @@ export interface CodeSnippet {
   createdBy: string;
   favouriteBy: string[];
   isArchived: boolean;
+  shareId: string;
 }
 
 export interface Tag {

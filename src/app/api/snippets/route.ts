@@ -2,6 +2,7 @@ import connectDB from '@/lib/mongoDb';
 import Snippet from '@/models/Snippet';
 import Tag from '@/models/Tag';
 import { auth } from '@clerk/nextjs/server';
+import { nanoid } from 'nanoid';
 import { type NextRequest, NextResponse } from 'next/server';
 
 // Connect to MongoDB
@@ -89,6 +90,10 @@ export async function POST(req: NextRequest) {
 
     const { title, code, language, tags, description } = await req.json();
 
+    /// Generates a 10-char unique IDh
+
+    const shareId = nanoid(10);
+
     //  Convert tags from comma-separated string to an array
     const tagArray = tags.split(',').map((tag: string) => tag.trim());
 
@@ -113,6 +118,7 @@ export async function POST(req: NextRequest) {
       favouriteBy: [],
       isDeleted: false,
       isArchived: false,
+      shareId,
     });
 
     // Populate the tags field
