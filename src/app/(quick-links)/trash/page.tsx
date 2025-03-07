@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: 'Trash - Deleted Code Snippets',
     description:
       'Manage your deleted code snippets. Restore or permanently delete removed snippets.',
-    url: 'https://yourwebsite.com/trash',
+    url: 'https://snippet-hub-kohl.vercel.app/trash',
     type: 'website',
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ['/preview.png'],
   },
   alternates: {
-    canonical: 'https://yourwebsite.com/trash',
+    canonical: 'https://snippet-hub-kohl.vercel.app/trash',
   },
 };
 

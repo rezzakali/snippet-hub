@@ -29,7 +29,7 @@ export const metadata = {
     title: 'Explore Code Snippets - Improve Your Coding Efficiency',
     description:
       'Find and share high-quality code snippets for JavaScript, Python, React, and more.',
-    url: 'https://yourwebsite.com/explore',
+    url: 'https://snippet-hub-kohl.vercel.app/explore',
     type: 'website',
     images: [
       {
@@ -47,7 +47,7 @@ export const metadata = {
     images: ['/preview.png'],
   },
   alternates: {
-    canonical: 'https://yourwebsite.com/explore',
+    canonical: 'https://snippet-hub-kohl.vercel.app/explore',
   },
 };
 

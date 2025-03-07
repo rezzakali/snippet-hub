@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: 'Favourite Code Snippets - Your Saved Snippets',
     description:
       'Quickly access your saved and favourite code snippets in one place.',
-    url: 'https://yourwebsite.com/favourites',
+    url: 'https://snippet-hub-kohl.vercel.app/favourites',
     type: 'website',
     images: [
       {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     images: ['/preview.png'],
   },
   alternates: {
-    canonical: 'https://yourwebsite.com/favourites',
+    canonical: 'https://snippet-hub-kohl.vercel.app/favourites',
   },
 };
 
