@@ -9,7 +9,7 @@ import {
   updateSnippetsData,
 } from '@/redux/slices/snippetSlice';
 import { RootState } from '@/redux/store';
-import { HeartIcon, SparklesIcon } from 'lucide-react';
+import { SparklesIcon, Trash2 } from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -48,7 +48,7 @@ const TrashClient = () => {
     }
   }, [searchTerm, selectedTags, page]);
 
-  // ✅ Load snippets on mount
+  //  Load snippets on mount
   useEffect(() => {
     loadSnippets();
   }, [loadSnippets]);
@@ -73,7 +73,7 @@ const TrashClient = () => {
         </>
       ) : (
         <div className="flex flex-col items-center justify-center h-screen">
-          <HeartIcon className="w-10 h-10 text-muted-foreground" />
+          <Trash2 className="w-10 h-10 text-muted-foreground" />
           <p className="text-center text-muted-foreground">
             No snippets in trash.
           </p>

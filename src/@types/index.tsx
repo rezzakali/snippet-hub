@@ -15,6 +15,7 @@ export interface CodeSnippet {
 export interface Tag {
   _id: string;
   name: string;
+  createdBy: string;
 }
 
 export interface CreateSnippet {

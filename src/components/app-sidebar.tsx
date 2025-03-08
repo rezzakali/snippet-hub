@@ -15,6 +15,7 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar';
 import { Heart, Sparkles, SquareTerminal, Tags, Trash } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import AllLanguages from './all-languages';
 import { NavLanguages } from './nav-languages';
 import { NavMain } from './nav-main';
@@ -47,12 +48,16 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const router = useRouter();
   return (
     <React.Fragment>
       <Sidebar {...props} collapsible="icon">
         <SidebarHeader>
           <SidebarMenu>
-            <SidebarMenuItem>
+            <SidebarMenuItem
+              onClick={() => router.push('/explore')}
+              className="cursor-pointer"
+            >
               <SidebarMenuButton
                 size="lg"
                 asChild

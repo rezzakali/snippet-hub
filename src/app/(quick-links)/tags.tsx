@@ -19,7 +19,9 @@ const Tags = () => {
   const [open, setOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
-  const [tags, setTags] = useState<Tag[]>([{ _id: 'all', name: 'All' }]);
+  const [tags, setTags] = useState<Tag[]>([
+    { _id: 'all', name: 'All', createdBy: '' },
+  ]);
 
   const handleTagClick = (tag: string) => {
     let newTags: string[];

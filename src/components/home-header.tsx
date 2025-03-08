@@ -12,7 +12,7 @@ export default function LandingPageHeader() {
           <Image src={'/logo.png'} alt="snippet-logo" fill priority />
         </div>
         <span className="text-xl font-bold">
-          <span className="text-primary">Snippet</span> Hub
+          <span className="text-primary">Snippet</span>Hub
         </span>
       </div>
       <div className="space-x-4">

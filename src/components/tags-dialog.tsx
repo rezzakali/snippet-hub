@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useUser } from '@clerk/nextjs';
 import { Loader2, Pencil, Plus, Trash } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -31,6 +32,8 @@ export default function TagsModal({
   const [searchQuery, setSearchQuery] = useState('');
 
   const [deletingTagId, setDeletingTagId] = useState<string | null>(null);
+
+  const user = useUser();
 
   const filteredTags = tags.filter((tag) =>
     tag.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -204,27 +207,29 @@ export default function TagsModal({
                   className="flex items-center justify-between py-1 bg-muted/50 rounded-md px-3"
                 >
                   <span className="text-sm capitalize">{tag.name}</span>
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleEditTag(index)}
-                    >
-                      <Pencil className="w-3 h-3" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleDeleteTag(tag._id)}
-                      disabled={deletingTagId === tag._id}
-                    >
-                      {deletingTagId === tag._id ? (
-                        <Loader2 className="w-3 h-3 animate-spin" />
-                      ) : (
-                        <Trash className="w-3 h-3 text-red-500" />
-                      )}
-                    </Button>
-                  </div>
+                  {tag.createdBy === user?.user?.id && (
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleEditTag(index)}
+                      >
+                        <Pencil className="w-3 h-3" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleDeleteTag(tag._id)}
+                        disabled={deletingTagId === tag._id}
+                      >
+                        {deletingTagId === tag._id ? (
+                          <Loader2 className="w-3 h-3 animate-spin" />
+                        ) : (
+                          <Trash className="w-3 h-3 text-red-500" />
+                        )}
+                      </Button>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
